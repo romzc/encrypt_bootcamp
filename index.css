@@ -38,7 +38,6 @@ main {
 
 .input_area_textarea {
     width: 100%;
-    height: auto;
     min-height: 255px;
     flex-grow: 1;
     flex-shrink: 0;
