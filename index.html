@@ -13,7 +13,7 @@
             <img class="alura_icon" src="./assets/alura_icon.svg"/>
            
             <textarea 
-                placeholder="hohohoho"
+                placeholder="Ingrese el texto aqui"
                 id="textInput"
                 class="input_area_textarea"></textarea>
             
@@ -28,10 +28,15 @@
         </div>
             
         <div class="response_area">
-            <img src="./assets/icon_woman.svg" alt="woman">
-            <h2>Ningún mensaje fue<br> encontrado</h2>
-            <p>Ingresa el texto que desees encriptar o desencriptar.</p>
-            <button>Copiar</button>
+            <div id="response_prev" class="response_area_prev show">
+                <img src="./assets/icon_woman.svg" alt="woman">
+                <h2>Ningún mensaje fue<br> encontrado</h2>
+                <p>Ingresa el texto que desees encriptar o desencriptar.</p>
+            </div>
+            <div id="response_resp" class="response_area_resp ">
+                <p id="response_resp-text"></p>
+                <button id="response_resp-copy">Copiar</button>
+            </div>
         </div>
     </main>
     <script src="./index.js"></script>

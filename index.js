@@ -1,7 +1,13 @@
 const _text = document.getElementById("textInput")
 const _encrypt = document.getElementById("encript")
 const _decrypt = document.getElementById("decript")
+// containers
+const _prevContainer = document.getElementById("response_prev")
+const _respContainer = document.getElementById("response_resp")
 
+// --
+const _textResponse = document.getElementById("response_resp-text")
+const _copyButton = document.getElementById("response_resp-copy")
 
 
 const keys = {
@@ -51,15 +57,64 @@ _encrypt.addEventListener('click', (event) => {
     // verificar que tiene informacion.
     if( !textValue ) {
         // do nothing
+        if(!_prevContainer.classList.contains("show")) {
+            _prevContainer.classList.add("show")
+        }
+    
+        if(_respContainer.classList.contains("show")) {
+            _respContainer.classList.remove("show")
+        }
         return
     }
-    // encripar la informacion del textarea.
-    const encodedText = encode(textValue,keys)
-    const decodedText = decode(encodedText, keys)
-
-    // escribir el resultado en el area de response.
-
-    console.log(encodedText)
-    console.log(decodedText)
+    else {
+        // encripar la informacion del textarea.
+        const encodedText = encode(textValue,keys)
+    
+        // escribir el resultado en el area de response.
+        if(_prevContainer.classList.contains("show")) {
+            _prevContainer.classList.remove("show")
+        }
+    
+        if(!_respContainer.classList.contains("show")) {
+            _respContainer.classList.add("show")
+        }
+        _textResponse.textContent = encodedText
+    }
 })
 
+_decrypt.addEventListener('click', (event) => {
+    // recuperar informacion del textarea.
+    const textValue = _text.value
+
+    // verificar que tiene informacion.
+    if( !textValue ) {
+        // do nothing
+        if(!_prevContainer.classList.contains("show")) {
+            _prevContainer.classList.add("show")
+        }
+    
+        if(_respContainer.classList.contains("show")) {
+            _respContainer.classList.remove("show")
+        }
+        return
+    }
+    else {
+        // encripar la informacion del textarea.
+        const encodedText = decode(textValue,keys)
+    
+        // escribir el resultado en el area de response.
+        if(_prevContainer.classList.contains("show")) {
+            _prevContainer.classList.remove("show")
+        }
+    
+        if(!_respContainer.classList.contains("show")) {
+            _respContainer.classList.add("show")
+        }
+        _textResponse.textContent = encodedText
+    }
+})
+
+_copyButton.addEventListener('click', (event) => {
+    const aux = _textResponse.innerHTML
+    navigator.clipboard.writeText(aux)
+})
